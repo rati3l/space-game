@@ -31,6 +31,25 @@ jobs:
             exit 1
           fi
 
+      - name: Install export templates
+        run: |
+          TEMPLATE_VERSION="4.6.stable"
+          TEMPLATE_URL="https://downloads.tuxfamily.org/godotengine/4.6/Godot_v4.6-stable_export_templates.tpz"
+          TARGET_DIR="$HOME/.local/share/godot/export_templates/$TEMPLATE_VERSION"
+          TMP_DIR="/tmp/godot-templates"
+
+          mkdir -p "$TARGET_DIR" "$TMP_DIR"
+          wget -q "$TEMPLATE_URL" -O /tmp/export_templates.tpz
+          unzip -oq /tmp/export_templates.tpz -d "$TMP_DIR"
+
+          if [ -d "$TMP_DIR/templates" ]; then
+            cp -f "$TMP_DIR"/templates/* "$TARGET_DIR"/
+          else
+            cp -f "$TMP_DIR"/* "$TARGET_DIR"/
+          fi
+
+          ls -1 "$TARGET_DIR"/web_nothreads_*.zip
+
       - name: Export web build
         run: |
           mkdir -p build/web
