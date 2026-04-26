@@ -1,0 +1,294 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_game"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_game")
+
+[node name="SpaceBackground" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+texture_filter = 1
+
+[node name="Stars" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.8, 0.86, 1, 0.1)
+polygon = PackedVector2Array(-2400, -2400, 2400, -2400, 2400, 2400, -2400, 2400)
+
+[node name="NebulaGlowMagenta" type="Polygon2D" parent="."]
+color = Color(1, 0.15, 0.85, 0.14)
+polygon = PackedVector2Array(-1200, -620, 220, -620, 580, -300, 440, 60, -80, 180, -520, 20, -1220, -240)
+
+[node name="NebulaGlowCyan" type="Polygon2D" parent="."]
+color = Color(0.08, 0.95, 1, 0.12)
+polygon = PackedVector2Array(-160, 40, 480, -60, 1320, 220, 1340, 700, 540, 860, -260, 640, -520, 260)
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(0, 0)
+
+[node name="BackGlow" type="Polygon2D" parent="Player"]
+color = Color(0.15, 1, 0.98, 0.22)
+polygon = PackedVector2Array(0, -26, 22, 16, 0, 30, -22, 16)
+
+[node name="Body" type="Polygon2D" parent="Player"]
+visible = false
+color = Color(0.2, 0.95, 1, 0)
+polygon = PackedVector2Array(0, -16, 12, 12, 0, 7, -12, 12)
+
+[node name="Outline" type="Line2D" parent="Player"]
+width = 2.8
+default_color = Color(0.45, 0.98, 1, 0.95)
+closed = true
+points = PackedVector2Array(0, -16, 12, 12, 0, 7, -12, 12)
+antialiased = true
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Bullets" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 0)
+current = true
+zoom = Vector2(0.72, 0.72)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/HUD"]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 260.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 20
+text = "Score: 0"
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/HUD"]
+offset_left = 16.0
+offset_top = 38.0
+offset_right = 280.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 20
+text = "Survival: 0.0s"
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/HUD"]
+offset_left = 16.0
+offset_top = 64.0
+offset_right = 900.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 18
+text = "Wave 1 | Pulse Blaster"
+
+[node name="HPBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+offset_left = 16.0
+offset_top = 96.0
+offset_right = 316.0
+offset_bottom = 114.0
+show_percentage = false
+max_value = 100.0
+value = 100.0
+
+[node name="ShieldBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+offset_left = 16.0
+offset_top = 116.0
+offset_right = 316.0
+offset_bottom = 134.0
+show_percentage = false
+max_value = 100.0
+value = 100.0
+
+[node name="XPBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+offset_left = 16.0
+offset_top = 136.0
+offset_right = 316.0
+offset_bottom = 154.0
+show_percentage = false
+max_value = 100.0
+value = 0.0
+
+[node name="WeaponSelectionPanel" type="Panel" parent="CanvasLayer/HUD"]
+offset_left = 16.0
+offset_top = 164.0
+offset_right = 476.0
+offset_bottom = 454.0
+
+[node name="WeaponButtonsGrid" type="GridContainer" parent="CanvasLayer/HUD/WeaponSelectionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Weapon1" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon1"
+
+[node name="Weapon2" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon2"
+
+[node name="Weapon3" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon3"
+
+[node name="Weapon4" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon4"
+
+[node name="Weapon5" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon5"
+
+[node name="Weapon6" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon6"
+
+[node name="Weapon7" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon7"
+
+[node name="Weapon8" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon8"
+
+[node name="Weapon9" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon9"
+
+[node name="Weapon10" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon10"
+
+[node name="Weapon11" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon11"
+
+[node name="Weapon12" type="Button" parent="CanvasLayer/HUD/WeaponSelectionPanel/WeaponButtonsGrid"]
+text = "Weapon12"
+
+[node name="ShieldSelectionPanel" type="Panel" parent="CanvasLayer/HUD"]
+offset_left = 486.0
+offset_top = 164.0
+offset_right = 946.0
+offset_bottom = 454.0
+
+[node name="ShieldButtonsGrid" type="GridContainer" parent="CanvasLayer/HUD/ShieldSelectionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Shield1" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield1"
+
+[node name="Shield2" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield2"
+
+[node name="Shield3" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield3"
+
+[node name="Shield4" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield4"
+
+[node name="Shield5" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield5"
+
+[node name="Shield6" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield6"
+
+[node name="Shield7" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield7"
+
+[node name="Shield8" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield8"
+
+[node name="Shield9" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield9"
+
+[node name="Shield10" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield10"
+
+[node name="Shield11" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield11"
+
+[node name="Shield12" type="Button" parent="CanvasLayer/HUD/ShieldSelectionPanel/ShieldButtonsGrid"]
+text = "Shield12"
+
+[node name="UpgradePanel" type="Panel" parent="CanvasLayer/HUD"]
+visible = false
+offset_left = 16.0
+offset_top = 464.0
+offset_right = 520.0
+offset_bottom = 676.0
+
+[node name="UpgradeTitle" type="Label" parent="CanvasLayer/HUD/UpgradePanel"]
+offset_left = 14.0
+offset_top = 10.0
+offset_right = 470.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 20
+text = "Level Up - Pick Upgrade"
+
+[node name="UpgradeButton1" type="Button" parent="CanvasLayer/HUD/UpgradePanel"]
+offset_left = 14.0
+offset_top = 52.0
+offset_right = 470.0
+offset_bottom = 86.0
+text = "Upgrade 1"
+
+[node name="UpgradeButton2" type="Button" parent="CanvasLayer/HUD/UpgradePanel"]
+offset_left = 14.0
+offset_top = 94.0
+offset_right = 470.0
+offset_bottom = 128.0
+text = "Upgrade 2"
+
+[node name="UpgradeButton3" type="Button" parent="CanvasLayer/HUD/UpgradePanel"]
+offset_left = 14.0
+offset_top = 136.0
+offset_right = 470.0
+offset_bottom = 170.0
+text = "Upgrade 3"
+
+[node name="LoadoutPanel" type="Panel" parent="CanvasLayer/HUD"]
+offset_left = 16.0
+offset_top = 464.0
+offset_right = 946.0
+offset_bottom = 676.0
+
+[node name="LoadoutTitle" type="Label" parent="CanvasLayer/HUD/LoadoutPanel"]
+offset_left = 14.0
+offset_top = 10.0
+offset_right = 770.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 22
+text = "Select starting Weapon + Shield"
+
+[node name="LoadoutInfo" type="Label" parent="CanvasLayer/HUD/LoadoutPanel"]
+offset_left = 14.0
+offset_top = 46.0
+offset_right = 900.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 16
+text = "Pick both, then click Start Run"
+
+[node name="StartRunButton" type="Button" parent="CanvasLayer/HUD/LoadoutPanel"]
+offset_left = 14.0
+offset_top = 96.0
+offset_right = 260.0
+offset_bottom = 132.0
+disabled = true
+text = "Start Run"

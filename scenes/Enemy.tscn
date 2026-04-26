@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_enemy_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 9.0
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_enemy_script")
+
+[node name="OuterGlow" type="Polygon2D" parent="."]
+visible = false
+color = Color(1, 0.12, 0.66, 0.34)
+polygon = PackedVector2Array(0, -26, 20, -12, 26, 0, 20, 16, 0, 28, -20, 16, -26, 0, -20, -12)
+
+[node name="Body" type="Polygon2D" parent="."]
+visible = false
+color = Color(1, 0.22, 0.52, 0)
+polygon = PackedVector2Array(0, -18, 16, -8, 18, 10, 0, 18, -18, 10, -16, -8)
+
+[node name="Core" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.68, 1, 1, 0)
+polygon = PackedVector2Array(0, -8, 7, -1, 4, 8, -4, 8, -7, -1)
+
+[node name="OutlineGlow" type="Line2D" parent="."]
+z_index = -1
+width = 5.5
+default_color = Color(1, 0.5, 0.88, 0.28)
+closed = true
+points = PackedVector2Array(0, -18, 16, -8, 18, 10, 0, 18, -18, 10, -16, -8)
+antialiased = true
+
+[node name="Outline" type="Line2D" parent="."]
+z_index = 0
+width = 2.4
+default_color = Color(1, 0.62, 0.9, 0.92)
+closed = true
+points = PackedVector2Array(0, -18, 16, -8, 18, 10, 0, 18, -18, 10, -16, -8)
+antialiased = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_body")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 16.0
+offset_bottom = -16.0
+show_percentage = false
+max_value = 10.0
+value = 10.0
+theme_override_styles/background = null
+theme_override_styles/fill = null
