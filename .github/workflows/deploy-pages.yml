@@ -39,7 +39,14 @@ jobs:
           TMP_DIR="/tmp/godot-templates"
 
           mkdir -p "$TARGET_DIR" "$TMP_DIR"
-          curl -fsSL "$TEMPLATE_URL" -o /tmp/export_templates.tpz
+          if command -v wget >/dev/null 2>&1; then
+            wget -q "$TEMPLATE_URL" -O /tmp/export_templates.tpz
+          elif command -v curl >/dev/null 2>&1; then
+            curl -fsSL "$TEMPLATE_URL" -o /tmp/export_templates.tpz
+          else
+            echo "Neither wget nor curl is available in CI container."
+            exit 1
+          fi
           unzip -oq /tmp/export_templates.tpz -d "$TMP_DIR"
 
           if [ -d "$TMP_DIR/templates" ]; then
