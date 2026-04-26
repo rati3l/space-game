@@ -38,6 +38,7 @@ jobs:
           TARGET_DIR="$HOME/.local/share/godot/export_templates/$TEMPLATE_VERSION"
           TMP_DIR="/tmp/godot-templates"
 
+          rm -rf "$TMP_DIR"
           mkdir -p "$TARGET_DIR" "$TMP_DIR"
           if command -v wget >/dev/null 2>&1; then
             wget -q "$TEMPLATE_URL" -O /tmp/export_templates.tpz
@@ -50,9 +51,9 @@ jobs:
           unzip -oq /tmp/export_templates.tpz -d "$TMP_DIR"
 
           if [ -d "$TMP_DIR/templates" ]; then
-            cp -f "$TMP_DIR"/templates/* "$TARGET_DIR"/
+            cp -R "$TMP_DIR/templates/." "$TARGET_DIR/"
           else
-            cp -f "$TMP_DIR"/* "$TARGET_DIR"/
+            cp -R "$TMP_DIR/." "$TARGET_DIR/"
           fi
 
           if ls "$TARGET_DIR"/web_nothreads_*.zip >/dev/null 2>&1; then
